@@ -1,9 +1,31 @@
-<div class="w-full max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
+<div class="w-full max-w-2xl mx-auto px-6 py-4 flex items-center justify-between relative">
   <a href="/" class="text-lg font-medium text-neutral-900 dark:text-neutral-100 hover:text-neutral-600 dark:hover:text-neutral-300 transition-colors">
     renato rodrigues
   </a>
-  <div class="flex items-center gap-6">
-    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  <div class="flex items-center gap-4">
+    {{/* Desktop navigation */}}
+    <div class="hidden md:block">
+      {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </div>
+    {{/* Hamburger button - mobile only */}}
+    <button
+      id="menu-toggle"
+      onclick="toggleMenu()"
+      class="p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors md:hidden"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      {{/* Hamburger icon */}}
+      <svg id="menu-icon-open" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+      {{/* Close icon */}}
+      <svg id="menu-icon-close" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    {{/* Theme toggle */}}
     <button
       onclick="toggleTheme()"
       class="p-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors"
@@ -19,4 +41,11 @@
       </svg>
     </button>
   </div>
+</div>
+{{/* Mobile navigation menu - overlay */}}
+<div
+  id="mobile-menu"
+  class="hidden md:hidden absolute left-0 right-0 top-full bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800 shadow-lg z-50"
+>
+  {{ partial "menu.html" (dict "menuID" "main" "page" . "mobile" true) }}
 </div>
