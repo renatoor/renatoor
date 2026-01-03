@@ -2,9 +2,11 @@
   <article class="space-y-8">
     <header class="space-y-4">
       <h1 class="text-3xl font-bold">{{ .Title }}</h1>
-      <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="block text-sm text-neutral-500 dark:text-neutral-500">
-        {{ .Date | time.Format "January 2, 2006" }}
-      </time>
+      {{- if not .Date.IsZero }}
+        <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="block text-sm text-neutral-500 dark:text-neutral-500">
+          {{ .Date | time.Format "January 2, 2006" }}
+        </time>
+      {{- end }}
     </header>
 
     <div class="prose prose-neutral dark:prose-invert max-w-none">
