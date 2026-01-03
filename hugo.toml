@@ -8,7 +8,7 @@ theme = 'custom-theme'
   [params.social]
     github = 'https://github.com/renatoor'
     linkedin = 'https://linkedin.com/in/renato-r'
-    email = 'hello@example.com'
+    email = 'hello@renatorodrigues.dev'
 
 [menus]
   [[menus.main]]
