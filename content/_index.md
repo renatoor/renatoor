@@ -1,5 +1,3 @@
 +++
-title = "hi, i'm renato."
+title = "Hi, I'm Renato."
 +++
-
-senior software engineer based in the world wide web.
