@@ -1,7 +1,23 @@
 {{ define "main" }}
-  {{ .Content }}
-  {{ range site.RegularPages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+  <div class="space-y-8">
+    <div class="space-y-4">
+      <h1 class="text-3xl font-bold">{{ .Title }}</h1>
+      {{- with .Content }}
+        <div class="text-lg text-neutral-600 dark:text-neutral-400">
+          {{ . }}
+        </div>
+      {{- end }}
+    </div>
+
+    <nav class="space-y-3">
+      <a href="/about/" class="group flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+        <span class="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors">&rarr;</span>
+        <span>about me</span>
+      </a>
+      <a href="/blog/" class="group flex items-center gap-2 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+        <span class="text-neutral-400 dark:text-neutral-600 group-hover:text-neutral-600 dark:group-hover:text-neutral-400 transition-colors">&rarr;</span>
+        <span>blog</span>
+      </a>
+    </nav>
+  </div>
 {{ end }}

@@ -1,10 +1,26 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
+  <article class="space-y-8">
+    <header class="space-y-4">
+      <h1 class="text-3xl font-bold">{{ .Title }}</h1>
+      <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="block text-sm text-neutral-500 dark:text-neutral-500">
+        {{ .Date | time.Format "January 2, 2006" }}
+      </time>
+    </header>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    <div class="prose prose-neutral dark:prose-invert max-w-none">
+      {{ .Content }}
+    </div>
 
-  {{ .Content }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    {{- with .GetTerms "tags" }}
+      <footer class="pt-4 border-t border-neutral-200 dark:border-neutral-800">
+        <div class="flex flex-wrap gap-2">
+          {{- range . }}
+            <a href="{{ .RelPermalink }}" class="text-sm px-3 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">
+              {{ .LinkTitle }}
+            </a>
+          {{- end }}
+        </div>
+      </footer>
+    {{- end }}
+  </article>
 {{ end }}

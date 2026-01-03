@@ -1,4 +1,48 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://renatorodrigues.dev/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
-theme = "custom-theme"
+title = 'renato rodrigues'
+theme = 'custom-theme'
+
+[params]
+  description = 'Senior Software Engineer'
+  [params.social]
+    github = 'https://github.com/renatoor'
+    linkedin = 'https://linkedin.com/in/renato-r'
+    email = 'hello@example.com'
+
+[menus]
+  [[menus.main]]
+    name = 'home'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'about'
+    pageRef = '/about'
+    weight = 20
+  [[menus.main]]
+    name = 'blog'
+    pageRef = '/blog'
+    weight = 30
+
+# Tailwind CSS build config
+[build]
+  [build.buildStats]
+    enable = true
+  [[build.cachebusters]]
+    source = 'assets/notwatching/hugo_stats\.json'
+    target = 'css'
+  [[build.cachebusters]]
+    source = '(postcss|tailwind)\.config\.js'
+    target = 'css'
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
+  [[module.mounts]]
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    disableWatch = true
+    source = 'hugo_stats.json'
+    target = 'assets/notwatching/hugo_stats.json'
