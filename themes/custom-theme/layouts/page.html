@@ -1,7 +1,7 @@
 {{ define "main" }}
   <article class="space-y-8">
     <header class="space-y-4">
-      <h1 class="text-3xl font-bold">{{ .Title }}</h1>
+      <h1 class="text-5xl font-bold">{{ .Title }}</h1>
       {{- if not .Date.IsZero }}
         <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="block text-sm text-neutral-500 dark:text-neutral-500">
           {{ .Date | time.Format "January 2, 2006" }}
