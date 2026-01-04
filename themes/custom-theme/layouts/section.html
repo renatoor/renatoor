@@ -6,7 +6,7 @@
         <span class="opacity-60">//</span> {{ .Section | default "archive" }}
       </p>
       {{- with .Content }}
-        <div class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+        <div class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
           {{ . }}
         </div>
       {{- end }}
@@ -33,14 +33,14 @@
                 </time>
               </div>
               {{- with .Summary }}
-                <p class="text-neutral-600 dark:text-neutral-400 line-clamp-2 text-[0.9375rem] leading-relaxed">
+                <p class="text-neutral-700 dark:text-neutral-300 line-clamp-2 text-[0.9375rem] leading-relaxed">
                   {{ . | plainify | truncate 160 }}
                 </p>
               {{- end }}
               {{- with .GetTerms "tags" }}
                 <div class="flex flex-wrap gap-2 pt-1">
                   {{- range first 3 . }}
-                    <span class="text-xs font-mono text-neutral-400 dark:text-neutral-600">
+                    <span class="text-xs font-mono text-neutral-600 dark:text-neutral-400">
                       #{{ .LinkTitle }}
                     </span>
                   {{- end }}
@@ -51,7 +51,7 @@
         {{- end }}
       </div>
     {{- else }}
-      <p class="text-neutral-500 dark:text-neutral-500 font-mono text-sm">No posts yet.</p>
+      <p class="text-neutral-600 dark:text-neutral-400 font-mono text-sm">No posts yet.</p>
     {{- end }}
   </div>
 {{ end }}

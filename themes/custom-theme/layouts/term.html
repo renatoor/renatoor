@@ -8,7 +8,7 @@
       <h1 class="hero-title text-3xl sm:text-4xl text-neutral-900 dark:text-neutral-100">
         #{{ .Title }}
       </h1>
-      <p class="text-neutral-500 dark:text-neutral-500 font-mono text-sm">
+      <p class="text-neutral-600 dark:text-neutral-400 font-mono text-sm">
         {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
       </p>
     </header>
@@ -29,7 +29,7 @@
                 </time>
               </div>
               {{- with .Summary }}
-                <p class="text-neutral-600 dark:text-neutral-400 line-clamp-2 text-[0.9375rem] leading-relaxed">
+                <p class="text-neutral-700 dark:text-neutral-300 line-clamp-2 text-[0.9375rem] leading-relaxed">
                   {{ . | plainify | truncate 160 }}
                 </p>
               {{- end }}

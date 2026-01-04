@@ -357,7 +357,7 @@ h1, h2, h3, h4, h5, h6,
 .toc-list a {
   font-family: var(--font-mono);
   font-size: 0.8125rem;
-  @apply block py-0.5 text-neutral-500 dark:text-neutral-400 hover:text-accent-500 transition-colors;
+  @apply block py-0.5 text-neutral-600 dark:text-neutral-300 hover:text-accent-500 transition-colors;
 }
 
 .toc-list a.active {
@@ -390,6 +390,6 @@ h1, h2, h3, h4, h5, h6,
   }
 
   .toc-list > nav > ul > li > ul a {
-    @apply text-neutral-600 dark:text-neutral-400;
+    @apply text-neutral-600 dark:text-neutral-300;
   }
 }
