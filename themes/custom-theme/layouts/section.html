@@ -3,7 +3,7 @@
     {{/* Section Header */}}
     <header class="space-y-3">
       <p class="text-sm font-mono text-accent-500 tracking-wider">
-        <span class="opacity-60">//</span> {{ .Section | default "archive" }}
+        <span class="opacity-60">//</span> {{ .Section | default (i18n "archive") }}
       </p>
       {{- with .Content }}
         <div class="text-neutral-700 dark:text-neutral-300 leading-relaxed">
@@ -51,7 +51,7 @@
         {{- end }}
       </div>
     {{- else }}
-      <p class="text-neutral-600 dark:text-neutral-400 font-mono text-sm">No posts yet.</p>
+      <p class="text-neutral-600 dark:text-neutral-400 font-mono text-sm">{{ i18n "no_posts" }}</p>
     {{- end }}
   </div>
 {{ end }}

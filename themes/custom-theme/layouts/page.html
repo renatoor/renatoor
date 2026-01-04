@@ -10,7 +10,7 @@
         aria-expanded="false"
         aria-controls="toc-mobile-content"
       >
-        <span><span class="text-accent-500">#</span> Table of Contents</span>
+        <span><span class="text-accent-500">#</span> {{ i18n "table_of_contents" }}</span>
         <svg id="toc-icon-expand" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 9l-7 7-7-7"/>
         </svg>
@@ -49,7 +49,7 @@
           </time>
           {{- with .ReadingTime }}
             <span class="text-neutral-400 dark:text-neutral-600">&middot;</span>
-            <span>{{ . }} min read</span>
+            <span>{{ i18n "min_read" (dict "Count" .) }}</span>
           {{- end }}
         </div>
       {{- end }}
@@ -83,7 +83,7 @@
   <aside class="hidden lg:block w-56 shrink-0 py-16">
     <nav class="sticky top-24 pr-8 max-h-[calc(100vh-12rem)] overflow-y-auto toc-scroll">
       <h2 class="text-xs font-mono uppercase tracking-wider text-neutral-600 dark:text-neutral-400 mb-4">
-        <span class="text-accent-500">#</span> On this page
+        <span class="text-accent-500">#</span> {{ i18n "on_this_page" }}
       </h2>
       <div class="toc-list text-sm">
         {{ .TableOfContents }}

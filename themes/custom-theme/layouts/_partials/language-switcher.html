@@ -1,0 +1,38 @@
+{{- if hugo.IsMultilingual }}
+{{- $currentLang := site.Language.Lang }}
+{{- $translations := .Translations }}
+{{- $hasTranslation := gt (len $translations) 0 }}
+<nav class="lang-switcher flex items-center gap-1 text-sm font-mono" aria-label="{{ i18n "switch_language" }}">
+  {{- range $index, $lang := site.Languages }}
+    {{- $isActive := eq .Lang $currentLang }}
+    {{- $targetURL := "" }}
+    {{- if $isActive }}
+      {{- $targetURL = "" }}
+    {{- else if $hasTranslation }}
+      {{- range $translations }}
+        {{- if eq .Lang $lang.Lang }}
+          {{- $targetURL = .RelPermalink }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+    {{- if and (not $isActive) (not $targetURL) }}
+      {{- $targetURL = (printf "/%s/" .Lang) }}
+      {{- if eq .Lang "en" }}
+        {{- $targetURL = "/" }}
+      {{- end }}
+    {{- end }}
+    {{- if gt $index 0 }}
+      <span class="text-neutral-400 dark:text-neutral-600 select-none">/</span>
+    {{- end }}
+    {{- if $isActive }}
+      <span class="lang-option text-accent-500 font-medium" aria-current="true">{{ .Lang }}</span>
+    {{- else }}
+      <a
+        href="{{ $targetURL }}"
+        class="lang-option text-neutral-600 dark:text-neutral-400 hover:text-accent-500 transition-colors"
+        title="{{ .LanguageName }}"
+      >{{ .Lang }}</a>
+    {{- end }}
+  {{- end }}
+</nav>
+{{- end }}

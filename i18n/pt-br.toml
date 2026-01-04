@@ -1,0 +1,54 @@
+# Navigation
+[home]
+other = "início"
+
+[about]
+other = "sobre"
+
+[blog]
+other = "blog"
+
+# Home page
+[software_engineer]
+other = "engenheiro de software"
+
+[recent_posts]
+other = "Posts Recentes"
+
+[view_all]
+other = "ver todos"
+
+# Blog/Posts
+[min_read]
+one = "{{ .Count }} min de leitura"
+other = "{{ .Count }} min de leitura"
+
+[table_of_contents]
+other = "Sumário"
+
+[on_this_page]
+other = "Nesta página"
+
+[no_posts]
+other = "Nenhum post ainda."
+
+# Section
+[archive]
+other = "arquivo"
+
+# Language switcher
+[switch_language]
+other = "Trocar idioma"
+
+# Accessibility
+[toggle_menu]
+other = "Alternar menu"
+
+[toggle_theme]
+other = "Alternar tema"
+
+[theme_dark]
+other = "escuro"
+
+[theme_light]
+other = "claro"

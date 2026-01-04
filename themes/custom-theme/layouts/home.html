@@ -4,7 +4,7 @@
     <section class="space-y-6 animate-fade-in">
       <div class="space-y-4">
         <p class="text-sm font-mono text-accent-500 tracking-wider">
-          <span class="opacity-60">//</span> software engineer
+          <span class="opacity-60">//</span> {{ i18n "software_engineer" }}
         </p>
         <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl text-neutral-900 dark:text-neutral-100">
           {{ .Title }}<span class="cursor-blink"></span>
@@ -42,10 +42,10 @@
     <section class="space-y-6 animate-fade-in animate-delay-3">
       <div class="flex items-center justify-between">
         <h2 class="text-sm font-mono text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
-          <span class="text-accent-500">#</span> Recent Posts
+          <span class="text-accent-500">#</span> {{ i18n "recent_posts" }}
         </h2>
-        <a href="/blog/" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 hover:text-accent-500 transition-colors min-h-[44px] flex items-center">
-          view all &rarr;
+        <a href="{{ "blog/" | relLangURL }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 hover:text-accent-500 transition-colors min-h-[44px] flex items-center">
+          {{ i18n "view_all" }} &rarr;
         </a>
       </div>
 
