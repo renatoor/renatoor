@@ -4,6 +4,33 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Desktop ToC scroll container */
+.toc-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #a3a3a3 transparent;
+}
+
+.toc-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.toc-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.toc-scroll::-webkit-scrollbar-thumb {
+  background-color: #a3a3a3;
+  border-radius: 2px;
+}
+
+.dark .toc-scroll {
+  scrollbar-color: #525252 transparent;
+}
+
+.dark .toc-scroll::-webkit-scrollbar-thumb {
+  background-color: #525252;
+}
+
 /* Scroll offset for sticky ToC bar on mobile */
 @media (max-width: 1023px) {
   h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {

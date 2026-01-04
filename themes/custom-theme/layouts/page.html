@@ -56,10 +56,14 @@
     {{- end }}
   </article>
 
-  {{/* Desktop ToC - Fixed on right side, shown only when ToC exists */}}
+{{ end }}
+
+{{/* Desktop ToC - Sticky sidebar, constrained within main content area */}}
+{{ define "toc-desktop" }}
+  {{- $hasToc := and (gt (len .TableOfContents) 0) (eq .Section "blog") -}}
   {{- if $hasToc }}
-  <aside class="hidden lg:block fixed top-24 right-8 w-56 max-h-[75vh] overflow-y-auto">
-    <nav>
+  <aside class="hidden lg:block w-56 shrink-0 py-12">
+    <nav class="sticky top-24 pr-8 max-h-[calc(100vh-12rem)] overflow-y-auto toc-scroll">
       <h2 class="text-xs font-semibold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-3">On this page</h2>
       <div class="toc-list text-sm">
         {{ .TableOfContents }}
