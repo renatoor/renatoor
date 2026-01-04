@@ -1,6 +1,6 @@
 {{/* Mobile ToC - Sticky full-width bar outside main container */}}
 {{ define "toc-mobile" }}
-  {{- $hasToc := gt (len .TableOfContents) 0 -}}
+  {{- $hasToc := and (gt (len .TableOfContents) 0) (eq .Section "blog") -}}
   {{- if $hasToc }}
   <div id="toc-mobile" class="lg:hidden sticky top-0 z-40 mb-8 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
     <button 
@@ -27,7 +27,7 @@
 {{ end }}
 
 {{ define "main" }}
-  {{- $hasToc := gt (len .TableOfContents) 0 -}}
+  {{- $hasToc := and (gt (len .TableOfContents) 0) (eq .Section "blog") -}}
 
   <article class="space-y-8">
     <header class="space-y-4">
