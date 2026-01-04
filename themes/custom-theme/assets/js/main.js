@@ -158,7 +158,9 @@ function handleTocClickOutside(event) {
 document.addEventListener('DOMContentLoaded', function() {
   const tocLinks = document.querySelectorAll('.toc-list a');
   if (tocLinks.length === 0) return;
-  
+
+  const tocScrollContainer = document.querySelector('.toc-scroll');
+
   const headings = [];
   tocLinks.forEach(link => {
     const id = link.getAttribute('href')?.slice(1);
@@ -166,33 +168,61 @@ document.addEventListener('DOMContentLoaded', function() {
       const heading = document.getElementById(id);
       if (heading) headings.push({ id, element: heading });
     }
-    
+
     // Close mobile ToC when a link is clicked
     link.addEventListener('click', function() {
       closeToc();
     });
   });
-  
+
+  function scrollTocToActiveLink(activeLink) {
+    if (!tocScrollContainer || !activeLink) return;
+
+    const containerRect = tocScrollContainer.getBoundingClientRect();
+    const linkRect = activeLink.getBoundingClientRect();
+
+    // Check if link is outside the visible area of the container (with some padding)
+    const padding = 20;
+    const isAbove = linkRect.top < containerRect.top + padding;
+    const isBelow = linkRect.bottom > containerRect.bottom - padding;
+
+    if (isAbove || isBelow) {
+      // Calculate link position relative to the scroll container's content
+      const linkTop = linkRect.top - containerRect.top + tocScrollContainer.scrollTop;
+      const targetScroll = linkTop - (containerRect.height / 2) + (linkRect.height / 2);
+
+      tocScrollContainer.scrollTo({
+        top: Math.max(0, targetScroll),
+        behavior: 'smooth'
+      });
+    }
+  }
+
   function updateActiveHeading() {
     let current = '';
     const scrollPos = window.scrollY + 100;
-    
+
     for (const { id, element } of headings) {
       if (element.offsetTop <= scrollPos) {
         current = id;
       }
     }
-    
+
+    let activeLink = null;
     tocLinks.forEach(link => {
       const href = link.getAttribute('href');
       if (href === '#' + current) {
         link.classList.add('active');
+        activeLink = link;
       } else {
         link.classList.remove('active');
       }
     });
+
+    // Auto-scroll ToC on desktop
+    scrollTocToActiveLink(activeLink);
   }
-  
+
   window.addEventListener('scroll', updateActiveHeading, { passive: true });
   updateActiveHeading();
 });
