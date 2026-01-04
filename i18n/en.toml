@@ -52,3 +52,6 @@ other = "dark"
 
 [theme_light]
 other = "light"
+
+[greeting]
+other = "hello"
