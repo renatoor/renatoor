@@ -3,3 +3,50 @@
 @source "hugo_stats.json";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Scroll offset for sticky ToC bar on mobile */
+@media (max-width: 1023px) {
+  h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
+    scroll-margin-top: 4rem;
+  }
+}
+
+/* Table of Contents */
+.toc-list ul {
+  @apply pl-4;
+}
+
+.toc-list li {
+  @apply py-0.5;
+}
+
+.toc-list a {
+  @apply block py-0.5 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors;
+}
+
+.toc-list a.active {
+  @apply text-neutral-900 dark:text-neutral-100 font-medium;
+}
+
+/* Mobile ToC: Sectioned design with borders */
+@media (max-width: 1023px) {
+  .toc-list > nav > ul {
+    @apply pl-0;
+  }
+
+  .toc-list > nav > ul > li {
+    @apply border-b border-neutral-200 dark:border-neutral-700 py-2;
+  }
+
+  .toc-list > nav > ul > li:last-child {
+    @apply border-b-0;
+  }
+
+  .toc-list > nav > ul > li > ul {
+    @apply pl-4 mt-1;
+  }
+
+  .toc-list > nav > ul > li > ul a {
+    @apply text-neutral-600 dark:text-neutral-400;
+  }
+}
