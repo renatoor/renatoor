@@ -2,7 +2,7 @@
 {{ define "toc-mobile" }}
   {{- $hasToc := and (gt (len .TableOfContents) 0) (eq .Section "blog") -}}
   {{- if $hasToc }}
-  <div id="toc-mobile" class="lg:hidden sticky top-0 z-40 mb-8 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+  <div id="toc-mobile" class="lg:hidden sticky top-0 z-40 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
     <button 
       onclick="toggleToc()" 
       class="w-full flex items-center justify-between px-6 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300"
