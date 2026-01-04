@@ -28,6 +28,15 @@
   @apply text-neutral-900 dark:text-neutral-100 font-medium;
 }
 
+/* H1 items in ToC - main sections with left border accent */
+.toc-list > nav > ul > li > a {
+  @apply font-semibold border-l-2 border-neutral-300 dark:border-neutral-600 pl-2 -ml-2;
+}
+
+.toc-list > nav > ul > li > a.active {
+  @apply border-neutral-900 dark:border-neutral-100;
+}
+
 /* Mobile ToC: Sectioned design with borders */
 @media (max-width: 1023px) {
   .toc-list > nav > ul {
