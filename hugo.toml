@@ -35,6 +35,10 @@ theme = 'custom-theme'
     source = '(postcss|tailwind)\.config\.js'
     target = 'css'
 
+[markup.tableOfContents]
+  startLevel = 1
+  endLevel = 2
+
 [module]
   [module.hugoVersion]
     extended = false

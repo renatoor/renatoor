@@ -96,6 +96,108 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+// Table of Contents toggle (mobile)
+function toggleToc() {
+  const content = document.getElementById('toc-mobile-content');
+  
+  if (!content) return;
+  
+  const isHidden = content.classList.contains('hidden');
+  
+  if (isHidden) {
+    openToc();
+  } else {
+    closeToc();
+  }
+}
+
+function openToc() {
+  const content = document.getElementById('toc-mobile-content');
+  const iconExpand = document.getElementById('toc-icon-expand');
+  const iconCollapse = document.getElementById('toc-icon-collapse');
+  
+  if (!content) return;
+  
+  content.classList.remove('hidden');
+  if (iconExpand) iconExpand.classList.add('hidden');
+  if (iconCollapse) iconCollapse.classList.remove('hidden');
+  
+  // Add click outside listener
+  setTimeout(() => {
+    document.addEventListener('click', handleTocClickOutside);
+  }, 0);
+}
+
+function closeToc() {
+  const content = document.getElementById('toc-mobile-content');
+  const iconExpand = document.getElementById('toc-icon-expand');
+  const iconCollapse = document.getElementById('toc-icon-collapse');
+  
+  if (!content) return;
+  
+  content.classList.add('hidden');
+  if (iconExpand) iconExpand.classList.remove('hidden');
+  if (iconCollapse) iconCollapse.classList.add('hidden');
+  
+  // Remove click outside listener
+  document.removeEventListener('click', handleTocClickOutside);
+}
+
+function handleTocClickOutside(event) {
+  const tocMobile = document.getElementById('toc-mobile');
+  
+  if (!tocMobile) return;
+  
+  // Check if click is outside the ToC container
+  if (!tocMobile.contains(event.target)) {
+    closeToc();
+  }
+}
+
+// Table of Contents scroll spy (highlight active heading) and mobile link click handler
+document.addEventListener('DOMContentLoaded', function() {
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  if (tocLinks.length === 0) return;
+  
+  const headings = [];
+  tocLinks.forEach(link => {
+    const id = link.getAttribute('href')?.slice(1);
+    if (id) {
+      const heading = document.getElementById(id);
+      if (heading) headings.push({ id, element: heading });
+    }
+    
+    // Close mobile ToC when a link is clicked
+    link.addEventListener('click', function() {
+      closeToc();
+    });
+  });
+  
+  function updateActiveHeading() {
+    let current = '';
+    const scrollPos = window.scrollY + 100;
+    
+    for (const { id, element } of headings) {
+      if (element.offsetTop <= scrollPos) {
+        current = id;
+      }
+    }
+    
+    tocLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === '#' + current) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+  
+  window.addEventListener('scroll', updateActiveHeading, { passive: true });
+  updateActiveHeading();
+});
+
 // Make functions available globally
 window.toggleTheme = toggleTheme;
 window.toggleMenu = toggleMenu;
+window.toggleToc = toggleToc;
