@@ -1,7 +1,42 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
+  <div class="space-y-10 animate-fade-in">
+    {{/* Header */}}
+    <header class="space-y-3">
+      <p class="text-sm font-mono text-accent-500 tracking-wider">
+        <span class="opacity-60">//</span> tagged
+      </p>
+      <h1 class="hero-title text-3xl sm:text-4xl text-neutral-900 dark:text-neutral-100">
+        #{{ .Title }}
+      </h1>
+      <p class="text-neutral-500 dark:text-neutral-500 font-mono text-sm">
+        {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
+      </p>
+    </header>
+
+    {{/* Posts List */}}
+    {{- with .Pages }}
+      <div class="space-y-2">
+        {{- range . }}
+          <article class="group">
+            <a href="{{ .RelPermalink }}" class="post-card block space-y-2">
+              <div class="flex items-start justify-between gap-4">
+                <h2 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-500 transition-colors">
+                  {{ .Title }}
+                  <span class="arrow text-accent-500">&rarr;</span>
+                </h2>
+                <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="text-sm font-mono text-neutral-400 dark:text-neutral-600 shrink-0 tabular-nums">
+                  {{ .Date | time.Format "Jan 02, 2006" }}
+                </time>
+              </div>
+              {{- with .Summary }}
+                <p class="text-neutral-600 dark:text-neutral-400 line-clamp-2 text-[0.9375rem] leading-relaxed">
+                  {{ . | plainify | truncate 160 }}
+                </p>
+              {{- end }}
+            </a>
+          </article>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
 {{ end }}

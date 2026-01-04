@@ -3,18 +3,18 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 min-h-screen flex flex-col">
-  <header class="border-b border-neutral-200 dark:border-neutral-800 relative">
+<body class="bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100 min-h-screen flex flex-col antialiased">
+  <header class="border-b border-neutral-200/50 dark:border-neutral-800/50 relative bg-neutral-50 dark:bg-neutral-950 sticky top-0 z-50">
     {{ partial "header.html" . }}
   </header>
   {{ block "toc-mobile" . }}{{ end }}
   <div class="flex-1 flex justify-center">
-    <main class="w-full max-w-2xl px-6 pt-8 pb-4 lg:py-12">
+    <main class="w-full max-w-2xl px-6 pt-10 pb-6 lg:py-16">
       {{ block "main" . }}{{ end }}
     </main>
     {{ block "toc-desktop" . }}{{ end }}
   </div>
-  <footer class="border-t border-neutral-200 dark:border-neutral-800">
+  <footer class="border-t border-neutral-200/50 dark:border-neutral-800/50">
     {{ partial "footer.html" . }}
   </footer>
 </body>

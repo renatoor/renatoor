@@ -1,7 +1,28 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-  {{ end }}
+  <div class="space-y-10 animate-fade-in">
+    {{/* Header */}}
+    <header class="space-y-3">
+      <p class="text-sm font-mono text-accent-500 tracking-wider">
+        <span class="opacity-60">//</span> browse by
+      </p>
+      <h1 class="hero-title text-3xl sm:text-4xl text-neutral-900 dark:text-neutral-100">{{ .Title }}</h1>
+      {{- with .Content }}
+        <div class="text-neutral-600 dark:text-neutral-400 leading-relaxed">
+          {{ . }}
+        </div>
+      {{- end }}
+    </header>
+
+    {{/* Tags Cloud */}}
+    {{- with .Pages }}
+      <div class="flex flex-wrap gap-3">
+        {{- range . }}
+          <a href="{{ .RelPermalink }}" class="tag-pill border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+            {{ .LinkTitle }}
+            <span class="ml-1 text-neutral-400 dark:text-neutral-600">({{ len .Pages }})</span>
+          </a>
+        {{- end }}
+      </div>
+    {{- end }}
+  </div>
 {{ end }}

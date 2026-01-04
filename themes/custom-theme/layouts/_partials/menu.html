@@ -15,13 +15,13 @@ Renders a menu for the given menu ID.
 
 {{- with index site.Menus $menuID }}
   <nav>
-    <ul class="{{ if $mobile }}flex flex-col divide-y divide-neutral-200 dark:divide-neutral-800{{ else }}flex items-center gap-6{{ end }}">
+    <ul class="{{ if $mobile }}flex flex-col{{ else }}flex items-center gap-6{{ end }}">
       {{- range . }}
         {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
         <li>
           <a
             href="{{ .URL }}"
-            class="{{ if $mobile }}mobile-menu-link block text-base px-6 py-4{{ else }}text-sm{{ end }} transition-colors {{ if $isActive }}text-neutral-900 dark:text-neutral-100{{ else }}text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100{{ end }}"
+            class="{{ if $mobile }}mobile-menu-link block font-mono text-sm px-6 py-4 border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors {{ if $isActive }}text-accent-500{{ else }}text-neutral-600 dark:text-neutral-400 hover:text-accent-500{{ end }}{{ else }}nav-link transition-colors {{ if $isActive }}text-accent-500{{ else }}text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100{{ end }}{{ end }}"
             {{ if $isActive }}aria-current="page"{{ end }}
           >{{ .Name }}</a>
         </li>

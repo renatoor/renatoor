@@ -4,7 +4,316 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/* Desktop ToC scroll container */
+/* ============================================
+   DESIGN SYSTEM - Refined Terminal Aesthetic
+   ============================================ */
+
+@theme {
+  /* Typography */
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif: 'Source Serif 4', Georgia, serif;
+
+  /* Accent Colors - Cyan (better dark mode contrast) */
+  --color-accent-50: #ecfeff;
+  --color-accent-100: #cffafe;
+  --color-accent-200: #a5f3fc;
+  --color-accent-300: #67e8f9;
+  --color-accent-400: #22d3ee;
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
+
+  /* Animation timing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
+}
+
+/* Subtle noise texture overlay */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.dark .noise-overlay::before {
+  opacity: 0.03;
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+/* Headings - Monospace with character */
+h1, h2, h3, h4, h5, h6,
+.font-display {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Hero title specific styling */
+.hero-title {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+/* Code-style prefix decoration */
+.code-prefix::before {
+  content: '>';
+  margin-right: 0.5rem;
+  color: var(--color-accent-500);
+  font-weight: 400;
+}
+
+/* Blinking cursor animation */
+.cursor-blink::after {
+  content: '_';
+  animation: blink 1s step-end infinite;
+  color: var(--color-accent-500);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+
+.nav-link {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background: var(--color-accent-500);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-out-expo);
+}
+
+.nav-link:hover::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.nav-link[aria-current="page"] {
+  color: var(--color-accent-500);
+}
+
+/* ============================================
+   CARDS & LINKS
+   ============================================ */
+
+/* Blog post card */
+.post-card {
+  position: relative;
+  padding: 1.5rem;
+  margin: -1.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.post-card:hover {
+  background-color: rgb(6 182 212 / 0.04);
+}
+
+.dark .post-card:hover {
+  background-color: rgb(6 182 212 / 0.06);
+}
+
+/* Post title with arrow */
+.post-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.post-title .arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease-out-expo);
+  opacity: 0;
+}
+
+.post-card:hover .post-title .arrow {
+  transform: translateX(4px);
+  opacity: 1;
+}
+
+/* Tag pills */
+.tag-pill {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  transition: all 0.2s ease;
+}
+
+.tag-pill:hover {
+  border-color: var(--color-accent-500);
+  color: var(--color-accent-500);
+}
+
+/* ============================================
+   SOCIAL LINKS
+   ============================================ */
+
+.social-link {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border: 1px solid;
+  border-radius: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.social-link:hover {
+  border-color: var(--color-accent-500);
+  color: var(--color-accent-500);
+}
+
+/* ============================================
+   PROSE ENHANCEMENTS
+   ============================================ */
+
+.prose {
+  font-family: var(--font-serif);
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  background: rgb(6 182 212 / 0.1);
+  color: var(--color-accent-600);
+}
+
+.dark .prose code {
+  background: rgb(6 182 212 / 0.15);
+  color: var(--color-accent-400);
+}
+
+.prose pre code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.prose a {
+  color: var(--color-accent-600);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--color-accent-500);
+}
+
+.dark .prose a {
+  color: var(--color-accent-400);
+}
+
+.prose blockquote {
+  font-style: normal;
+  border-left-color: var(--color-accent-500);
+}
+
+/* ============================================
+   PAGE TRANSITIONS & ANIMATIONS
+   ============================================ */
+
+/* Fade in animation for page load */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.6s var(--ease-out-expo) forwards;
+}
+
+.animate-delay-1 { animation-delay: 0.1s; opacity: 0; }
+.animate-delay-2 { animation-delay: 0.2s; opacity: 0; }
+.animate-delay-3 { animation-delay: 0.3s; opacity: 0; }
+.animate-delay-4 { animation-delay: 0.4s; opacity: 0; }
+
+/* ============================================
+   THEME TOGGLE
+   ============================================ */
+
+.theme-toggle {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: rgb(0 0 0 / 0.05);
+}
+
+.dark .theme-toggle:hover {
+  background-color: rgb(255 255 255 / 0.05);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.footer-divider {
+  width: 4rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-500), transparent);
+}
+
+/* ============================================
+   TABLE OF CONTENTS (preserved from original)
+   ============================================ */
+
 .toc-scroll {
   scrollbar-width: thin;
   scrollbar-color: #a3a3a3 transparent;
@@ -31,14 +340,12 @@
   background-color: #525252;
 }
 
-/* Scroll offset for sticky ToC bar on mobile */
 @media (max-width: 1023px) {
   h1[id], h2[id], h3[id], h4[id], h5[id], h6[id] {
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 8rem;
   }
 }
 
-/* Table of Contents */
 .toc-list ul {
   @apply pl-4;
 }
@@ -48,23 +355,23 @@
 }
 
 .toc-list a {
-  @apply block py-0.5 text-neutral-500 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  @apply block py-0.5 text-neutral-500 dark:text-neutral-400 hover:text-accent-500 transition-colors;
 }
 
 .toc-list a.active {
-  @apply text-neutral-900 dark:text-neutral-100 font-medium;
+  @apply text-accent-500 font-medium;
 }
 
-/* H1 items in ToC - main sections with left border accent */
 .toc-list > nav > ul > li > a {
   @apply font-semibold border-l-2 border-neutral-300 dark:border-neutral-600 pl-2 -ml-2;
 }
 
 .toc-list > nav > ul > li > a.active {
-  @apply border-neutral-900 dark:border-neutral-100;
+  @apply border-accent-500;
 }
 
-/* Mobile ToC: Sectioned design with borders */
 @media (max-width: 1023px) {
   .toc-list > nav > ul {
     @apply pl-0;

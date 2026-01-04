@@ -1,26 +1,77 @@
 {{ define "main" }}
-  <div class="space-y-8">
-    <div class="space-y-4">
-      <h1 class="text-3xl font-bold">{{ .Title }}</h1>
-      {{- with .Content }}
-        <div class="text-lg text-neutral-600 dark:text-neutral-400">
-          {{ . }}
-        </div>
-      {{- end }}
-    </div>
+  <div class="space-y-12 lg:space-y-16">
+    {{/* Hero Section */}}
+    <section class="space-y-6 animate-fade-in">
+      <div class="space-y-4">
+        <p class="text-sm font-mono text-accent-500 tracking-wider">
+          <span class="opacity-60">//</span> software engineer
+        </p>
+        <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl text-neutral-900 dark:text-neutral-100">
+          {{ .Title }}<span class="cursor-blink"></span>
+        </h1>
+        {{- with .Content }}
+          <div class="text-lg sm:text-xl text-neutral-600 dark:text-neutral-400 leading-relaxed max-w-xl animate-fade-in animate-delay-1">
+            {{ . }}
+          </div>
+        {{- end }}
+      </div>
 
-    <div class="flex items-center gap-2 text-sm text-neutral-600 dark:text-neutral-400">
-      {{- with site.Params.social.github }}
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">github</a>
-        <span class="text-neutral-400 dark:text-neutral-600">&middot;</span>
-      {{- end }}
-      {{- with site.Params.social.linkedin }}
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">linkedin</a>
-        <span class="text-neutral-400 dark:text-neutral-600">&middot;</span>
-      {{- end }}
-      {{- with site.Params.social.email }}
-        <a href="mailto:{{ . }}" class="hover:text-neutral-900 dark:hover:text-neutral-100 transition-colors">email</a>
-      {{- end }}
-    </div>
+      {{/* Social Links */}}
+      <div class="flex flex-wrap items-center gap-3 pt-2 animate-fade-in animate-delay-2">
+        {{- with site.Params.social.github }}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="social-link border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+            github
+          </a>
+        {{- end }}
+        {{- with site.Params.social.linkedin }}
+          <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="social-link border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+            linkedin
+          </a>
+        {{- end }}
+        {{- with site.Params.social.email }}
+          <a href="mailto:{{ . }}" class="social-link border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+            email
+          </a>
+        {{- end }}
+      </div>
+    </section>
+
+    {{/* Recent Posts Section */}}
+    {{- $posts := where site.RegularPages "Section" "blog" | first 3 }}
+    {{- with $posts }}
+    <section class="space-y-6 animate-fade-in animate-delay-3">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm font-mono text-neutral-500 dark:text-neutral-500 uppercase tracking-wider">
+          <span class="text-accent-500">#</span> Recent Posts
+        </h2>
+        <a href="/blog/" class="text-sm font-mono text-neutral-500 dark:text-neutral-500 hover:text-accent-500 transition-colors">
+          view all &rarr;
+        </a>
+      </div>
+
+      <div class="space-y-1">
+        {{- range . }}
+          <article class="group">
+            <a href="{{ .RelPermalink }}" class="post-card block space-y-2">
+              <div class="flex items-start justify-between gap-4">
+                <h3 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-500 transition-colors">
+                  {{ .Title }}
+                  <span class="arrow text-accent-500">&rarr;</span>
+                </h3>
+                <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="text-sm font-mono text-neutral-400 dark:text-neutral-600 shrink-0 tabular-nums">
+                  {{ .Date | time.Format "Jan 02" }}
+                </time>
+              </div>
+              {{- with .Summary }}
+                <p class="text-neutral-600 dark:text-neutral-400 line-clamp-2 text-[0.9375rem] leading-relaxed">
+                  {{ . | plainify | truncate 120 }}
+                </p>
+              {{- end }}
+            </a>
+          </article>
+        {{- end }}
+      </div>
+    </section>
+    {{- end }}
   </div>
 {{ end }}
