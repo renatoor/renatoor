@@ -1,12 +1,11 @@
-{{ define "main" }}
+{{/* Mobile ToC - Sticky full-width bar outside main container */}}
+{{ define "toc-mobile" }}
   {{- $hasToc := gt (len .TableOfContents) 0 -}}
-
-  {{/* Mobile ToC - Sticky with blur, dropdown overlays content */}}
   {{- if $hasToc }}
-  <div id="toc-mobile" class="lg:hidden sticky top-0 z-40 -mx-6 px-6 mb-4 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+  <div id="toc-mobile" class="lg:hidden sticky top-0 z-40 mb-8 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
     <button 
       onclick="toggleToc()" 
-      class="w-full flex items-center justify-between py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300"
+      class="w-full flex items-center justify-between px-6 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-300"
       aria-expanded="false"
       aria-controls="toc-mobile-content"
     >
@@ -18,13 +17,17 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
       </svg>
     </button>
-    <nav id="toc-mobile-content" class="hidden absolute left-0 right-0 max-h-[60vh] overflow-y-auto bg-white dark:bg-neutral-900 border-t border-b border-neutral-200 dark:border-neutral-800 shadow-lg px-6 pt-4 pb-6">
+    <nav id="toc-mobile-content" class="hidden max-h-[60vh] overflow-y-auto bg-white dark:bg-neutral-900 border-t border-b border-neutral-200 dark:border-neutral-800 shadow-lg px-6 py-3">
       <div class="toc-list text-sm">
         {{ .TableOfContents }}
       </div>
     </nav>
   </div>
   {{- end }}
+{{ end }}
+
+{{ define "main" }}
+  {{- $hasToc := gt (len .TableOfContents) 0 -}}
 
   <article class="space-y-8">
     <header class="space-y-4">

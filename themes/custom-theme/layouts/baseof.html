@@ -7,6 +7,7 @@
   <header class="border-b border-neutral-200 dark:border-neutral-800 relative">
     {{ partial "header.html" . }}
   </header>
+  {{ block "toc-mobile" . }}{{ end }}
   <main class="flex-1 w-full max-w-2xl mx-auto px-6 pt-0 pb-4 lg:py-12">
     {{ block "main" . }}{{ end }}
   </main>
