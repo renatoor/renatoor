@@ -2,7 +2,7 @@
 {{- $currentLang := site.Language.Lang }}
 {{- $translations := .Translations }}
 {{- $hasTranslation := gt (len $translations) 0 }}
-<nav class="lang-switcher flex items-center gap-2 text-sm font-mono" aria-label="{{ i18n "switch_language" }}">
+<nav class="lang-switcher flex items-center gap-3 md:gap-1 text-sm font-mono" aria-label="{{ i18n "switch_language" }}">
   {{- range $index, $lang := site.Languages }}
     {{- $isActive := eq .Lang $currentLang }}
     {{- $targetURL := "" }}
@@ -22,14 +22,14 @@
       {{- end }}
     {{- end }}
     {{- if gt $index 0 }}
-      <span class="text-neutral-400 dark:text-neutral-600 select-none px-1">/</span>
+      <span class="text-neutral-400 dark:text-neutral-600 select-none">/</span>
     {{- end }}
     {{- if $isActive }}
-      <span class="lang-option text-accent-600 dark:text-accent-500 font-medium py-2 px-1" aria-current="true">{{ .Lang }}</span>
+      <span class="lang-option text-accent-600 dark:text-accent-500 font-medium py-2 md:py-0" aria-current="true">{{ .Lang }}</span>
     {{- else }}
       <a
         href="{{ $targetURL }}"
-        class="lang-option text-neutral-600 dark:text-neutral-400 hover:text-accent-600 dark:hover:text-accent-500 transition-colors py-2 px-1 -m-1"
+        class="lang-option text-neutral-600 dark:text-neutral-400 hover:text-accent-600 dark:hover:text-accent-500 transition-colors py-2 md:py-0"
         title="{{ .LanguageName }}"
       >{{ .Lang }}</a>
     {{- end }}
