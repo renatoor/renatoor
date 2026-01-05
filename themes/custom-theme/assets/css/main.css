@@ -378,19 +378,60 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
     @apply pl-0;
   }
 
-  .toc-list > nav > ul > li {
-    @apply border-b border-neutral-200 dark:border-neutral-700 py-2;
+  /* Remove default list item padding */
+  .toc-list li {
+    @apply py-0 border-0;
   }
 
-  .toc-list > nav > ul > li:last-child {
-    @apply border-b-0;
+  /* All ToC links: full-width via negative margins, subtle borders */
+  .toc-list a {
+    @apply py-3;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    margin-left: -1.5rem !important;
+    margin-right: -1.5rem;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem;
+    border-bottom: 1px solid rgb(163 163 163 / 0.2);
   }
 
+  .dark .toc-list a {
+    border-bottom-color: rgb(115 115 115 / 0.3);
+  }
+
+  /* Top-level items: reset desktop styles, extra bold */
+  .toc-list > nav > ul > li > a {
+    @apply border-l-0 font-bold;
+  }
+
+  /* Nested ul: no extra padding since we handle it on links */
   .toc-list > nav > ul > li > ul {
-    @apply pl-4 mt-1;
+    @apply pl-0 mt-0;
   }
 
-  .toc-list > nav > ul > li > ul a {
-    @apply text-neutral-600 dark:text-neutral-300;
+  /* Nested items: extra left padding for indent */
+  .toc-list > nav > ul > li > ul > li > a {
+    padding-left: 2.5rem !important;
+  }
+
+  /* Active states - text highlight + subtle background */
+  .toc-list a.active {
+    @apply text-accent-600 dark:text-accent-500 font-medium;
+    background-color: rgb(6 182 212 / 0.05);
+    border-left: 0 !important;
+  }
+
+  /* H2 active - slightly different background */
+  .toc-list > nav > ul > li > ul > li > a.active {
+    background-color: rgb(6 182 212 / 0.08);
+  }
+
+  .dark .toc-list a.active {
+    background-color: rgb(6 182 212 / 0.08);
+  }
+
+  .dark .toc-list > nav > ul > li > ul > li > a.active {
+    background-color: rgb(6 182 212 / 0.12);
   }
 }
