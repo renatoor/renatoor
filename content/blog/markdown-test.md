@@ -1,6 +1,6 @@
 +++
 date = '2026-01-04T23:38:55-03:00'
-draft = true
+draft = false
 title = 'Markdown Rendering Test'
 tags = ['test', 'markdown', 'demo']
 math = true
