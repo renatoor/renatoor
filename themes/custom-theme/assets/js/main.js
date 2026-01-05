@@ -1,13 +1,13 @@
 // Dark mode toggle
-// Default to dark mode, persist preference in localStorage
+// Persist preference in localStorage, fallback to system preference
 
 (function() {
-  // Check for saved preference, default to 'dark'
+  // Check for saved preference, fallback to system preference
   const savedTheme = localStorage.getItem('theme');
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  
-  // If no saved preference, default to dark
-  const theme = savedTheme || 'dark';
+
+  // If no saved preference, use system preference
+  const theme = savedTheme || (prefersDark ? 'dark' : 'light');
   
   // Apply theme immediately to prevent flash
   if (theme === 'dark') {
@@ -23,16 +23,28 @@ function toggleTheme() {
 }
 
 // Mobile menu toggle
+const menuState = {
+  menu: null,
+  toggleBtn: null,
+  iconOpen: null,
+  iconClose: null,
+  initialized: false
+};
+
+function initMenu() {
+  if (menuState.initialized) return;
+  menuState.menu = document.getElementById('mobile-menu');
+  menuState.toggleBtn = document.getElementById('menu-toggle');
+  menuState.iconOpen = document.getElementById('menu-icon-open');
+  menuState.iconClose = document.getElementById('menu-icon-close');
+  menuState.initialized = true;
+}
+
 function toggleMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const toggleBtn = document.getElementById('menu-toggle');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
-  
-  if (!menu || !toggleBtn) return;
-  
-  const isOpen = !menu.classList.contains('hidden');
-  
+  initMenu();
+  if (!menuState.menu || !menuState.toggleBtn) return;
+
+  const isOpen = !menuState.menu.classList.contains('hidden');
   if (isOpen) {
     closeMenu();
   } else {
@@ -41,49 +53,36 @@ function toggleMenu() {
 }
 
 function openMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const toggleBtn = document.getElementById('menu-toggle');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
-  
-  if (!menu) return;
-  
-  menu.classList.remove('hidden');
-  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
-  if (iconOpen) iconOpen.classList.add('hidden');
-  if (iconClose) iconClose.classList.remove('hidden');
-  
-  // Add click outside listener
+  initMenu();
+  if (!menuState.menu) return;
+
+  menuState.menu.classList.remove('hidden');
+  if (menuState.toggleBtn) menuState.toggleBtn.setAttribute('aria-expanded', 'true');
+  if (menuState.iconOpen) menuState.iconOpen.classList.add('hidden');
+  if (menuState.iconClose) menuState.iconClose.classList.remove('hidden');
+
+  // Add click outside listener (delayed to avoid triggering on the same click)
   setTimeout(() => {
     document.addEventListener('click', handleClickOutside);
   }, 0);
 }
 
 function closeMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const toggleBtn = document.getElementById('menu-toggle');
-  const iconOpen = document.getElementById('menu-icon-open');
-  const iconClose = document.getElementById('menu-icon-close');
-  
-  if (!menu) return;
-  
-  menu.classList.add('hidden');
-  if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
-  if (iconOpen) iconOpen.classList.remove('hidden');
-  if (iconClose) iconClose.classList.add('hidden');
-  
-  // Remove click outside listener
+  initMenu();
+  if (!menuState.menu) return;
+
+  menuState.menu.classList.add('hidden');
+  if (menuState.toggleBtn) menuState.toggleBtn.setAttribute('aria-expanded', 'false');
+  if (menuState.iconOpen) menuState.iconOpen.classList.remove('hidden');
+  if (menuState.iconClose) menuState.iconClose.classList.add('hidden');
+
   document.removeEventListener('click', handleClickOutside);
 }
 
 function handleClickOutside(event) {
-  const menu = document.getElementById('mobile-menu');
-  const toggleBtn = document.getElementById('menu-toggle');
-  
-  if (!menu || !toggleBtn) return;
-  
-  // Check if click is outside menu and toggle button
-  if (!menu.contains(event.target) && !toggleBtn.contains(event.target)) {
+  if (!menuState.menu || !menuState.toggleBtn) return;
+
+  if (!menuState.menu.contains(event.target) && !menuState.toggleBtn.contains(event.target)) {
     closeMenu();
   }
 }
@@ -97,13 +96,28 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Table of Contents toggle (mobile)
+const tocState = {
+  content: null,
+  container: null,
+  iconExpand: null,
+  iconCollapse: null,
+  initialized: false
+};
+
+function initToc() {
+  if (tocState.initialized) return;
+  tocState.content = document.getElementById('toc-mobile-content');
+  tocState.container = document.getElementById('toc-mobile');
+  tocState.iconExpand = document.getElementById('toc-icon-expand');
+  tocState.iconCollapse = document.getElementById('toc-icon-collapse');
+  tocState.initialized = true;
+}
+
 function toggleToc() {
-  const content = document.getElementById('toc-mobile-content');
-  
-  if (!content) return;
-  
-  const isHidden = content.classList.contains('hidden');
-  
+  initToc();
+  if (!tocState.content) return;
+
+  const isHidden = tocState.content.classList.contains('hidden');
   if (isHidden) {
     openToc();
   } else {
@@ -112,44 +126,34 @@ function toggleToc() {
 }
 
 function openToc() {
-  const content = document.getElementById('toc-mobile-content');
-  const iconExpand = document.getElementById('toc-icon-expand');
-  const iconCollapse = document.getElementById('toc-icon-collapse');
-  
-  if (!content) return;
-  
-  content.classList.remove('hidden');
-  if (iconExpand) iconExpand.classList.add('hidden');
-  if (iconCollapse) iconCollapse.classList.remove('hidden');
-  
-  // Add click outside listener
+  initToc();
+  if (!tocState.content) return;
+
+  tocState.content.classList.remove('hidden');
+  if (tocState.iconExpand) tocState.iconExpand.classList.add('hidden');
+  if (tocState.iconCollapse) tocState.iconCollapse.classList.remove('hidden');
+
+  // Add click outside listener (delayed to avoid triggering on the same click)
   setTimeout(() => {
     document.addEventListener('click', handleTocClickOutside);
   }, 0);
 }
 
 function closeToc() {
-  const content = document.getElementById('toc-mobile-content');
-  const iconExpand = document.getElementById('toc-icon-expand');
-  const iconCollapse = document.getElementById('toc-icon-collapse');
-  
-  if (!content) return;
-  
-  content.classList.add('hidden');
-  if (iconExpand) iconExpand.classList.remove('hidden');
-  if (iconCollapse) iconCollapse.classList.add('hidden');
-  
-  // Remove click outside listener
+  initToc();
+  if (!tocState.content) return;
+
+  tocState.content.classList.add('hidden');
+  if (tocState.iconExpand) tocState.iconExpand.classList.remove('hidden');
+  if (tocState.iconCollapse) tocState.iconCollapse.classList.add('hidden');
+
   document.removeEventListener('click', handleTocClickOutside);
 }
 
 function handleTocClickOutside(event) {
-  const tocMobile = document.getElementById('toc-mobile');
-  
-  if (!tocMobile) return;
-  
-  // Check if click is outside the ToC container
-  if (!tocMobile.contains(event.target)) {
+  if (!tocState.container) return;
+
+  if (!tocState.container.contains(event.target)) {
     closeToc();
   }
 }
