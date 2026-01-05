@@ -4,14 +4,16 @@ Renders a menu for the given menu ID.
 @context {page} page The current page.
 @context {string} menuID The menu ID.
 @context {bool} mobile Whether this is the mobile menu (optional).
+@context {string} closeMenu Alpine.js expression to close menu (optional).
 
 @example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-@example: {{ partial "menu.html" (dict "menuID" "main" "page" . "mobile" true) }}
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" . "mobile" true "closeMenu" "menuOpen = false") }}
 */}}
 
 {{- $page := .page }}
 {{- $menuID := .menuID }}
 {{- $mobile := .mobile | default false }}
+{{- $closeMenu := .closeMenu }}
 
 {{- with index site.Menus $menuID }}
   <nav>
@@ -21,7 +23,8 @@ Renders a menu for the given menu ID.
         <li>
           <a
             href="{{ .URL }}"
-            class="{{ if $mobile }}mobile-menu-link block font-mono text-sm px-6 py-4 min-h-[48px] flex items-center border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors {{ if $isActive }}text-accent-600 dark:text-accent-500{{ else }}text-neutral-700 dark:text-neutral-300 hover:text-accent-600 dark:hover:text-accent-500{{ end }}{{ else }}nav-link relative font-mono text-sm font-medium lowercase tracking-wide transition-colors {{ if $isActive }}text-accent-600 dark:text-accent-500{{ else }}text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100{{ end }}{{ end }}"
+            {{ if $closeMenu }}@click="{{ $closeMenu }}"{{ end }}
+            class="{{ if $mobile }}block font-mono text-sm px-6 py-4 min-h-[48px] flex items-center border-b border-neutral-200/50 dark:border-neutral-800/50 transition-colors {{ if $isActive }}text-accent-600 dark:text-accent-500{{ else }}text-neutral-700 dark:text-neutral-300 hover:text-accent-600 dark:hover:text-accent-500{{ end }}{{ else }}nav-link relative font-mono text-sm font-medium lowercase tracking-wide transition-colors {{ if $isActive }}text-accent-600 dark:text-accent-500{{ else }}text-neutral-700 dark:text-neutral-300 hover:text-neutral-900 dark:hover:text-neutral-100{{ end }}{{ end }}"
             {{ if $isActive }}aria-current="page"{{ end }}
           >{{ .Name }}</a>
         </li>

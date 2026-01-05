@@ -10,6 +10,7 @@
 {{ with (templates.Defer (dict "key" "global")) }}
   {{ partial "head/css.html" . }}
 {{ end }}
+{{ partialCached "head/theme-init.html" . }}
 {{ partialCached "head/js.html" . }}
 {{- if .Param "math" }}
 {{ partial "head/math.html" . }}
