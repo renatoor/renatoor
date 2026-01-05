@@ -25,11 +25,11 @@
       <span class="text-neutral-400 dark:text-neutral-600 select-none">/</span>
     {{- end }}
     {{- if $isActive }}
-      <span class="lang-option text-accent-500 font-medium" aria-current="true">{{ .Lang }}</span>
+      <span class="lang-option text-accent-600 dark:text-accent-500 font-medium" aria-current="true">{{ .Lang }}</span>
     {{- else }}
       <a
         href="{{ $targetURL }}"
-        class="lang-option text-neutral-600 dark:text-neutral-400 hover:text-accent-500 transition-colors"
+        class="lang-option text-neutral-600 dark:text-neutral-400 hover:text-accent-600 dark:hover:text-accent-500 transition-colors"
         title="{{ .LanguageName }}"
       >{{ .Lang }}</a>
     {{- end }}

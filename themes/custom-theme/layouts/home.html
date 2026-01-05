@@ -3,7 +3,7 @@
     {{/* Hero Section */}}
     <section class="space-y-6 animate-fade-in">
       <div class="space-y-4">
-        <p class="text-base font-mono text-accent-500 tracking-wider">
+        <p class="text-base font-mono text-accent-600 dark:text-accent-500 tracking-wider">
           <span class="opacity-60">//</span> {{ i18n "greeting" }}
         </p>
         <h1 class="hero-title text-4xl sm:text-5xl lg:text-6xl text-neutral-900 dark:text-neutral-100">
@@ -42,9 +42,9 @@
     <section class="space-y-6 animate-fade-in animate-delay-3">
       <div class="flex items-center justify-between">
         <h2 class="text-sm font-mono text-neutral-600 dark:text-neutral-400 uppercase tracking-wider">
-          <span class="text-accent-500">#</span> {{ i18n "recent_posts" }}
+          <span class="text-accent-600 dark:text-accent-500">#</span> {{ i18n "recent_posts" }}
         </h2>
-        <a href="{{ "blog/" | relLangURL }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 hover:text-accent-500 transition-colors min-h-[44px] flex items-center">
+        <a href="{{ "blog/" | relLangURL }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 hover:text-accent-600 dark:hover:text-accent-500 transition-colors min-h-[44px] flex items-center">
           {{ i18n "view_all" }} &rarr;
         </a>
       </div>
@@ -54,9 +54,9 @@
           <article class="group">
             <a href="{{ .RelPermalink }}" class="post-card block space-y-2">
               <div class="flex items-start justify-between gap-4">
-                <h3 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-500 transition-colors">
+                <h3 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-colors">
                   {{ .Title }}
-                  <span class="arrow text-accent-500">&rarr;</span>
+                  <span class="arrow text-accent-600 dark:text-accent-500">&rarr;</span>
                 </h3>
                 <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 shrink-0 tabular-nums">
                   {{ .Date | time.Format "Jan 02" }}

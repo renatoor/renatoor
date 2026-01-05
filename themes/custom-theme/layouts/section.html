@@ -2,7 +2,7 @@
   <div class="space-y-10 animate-fade-in">
     {{/* Section Header */}}
     <header class="space-y-3">
-      <p class="text-base font-mono text-accent-500 tracking-wider">
+      <p class="text-base font-mono text-accent-600 dark:text-accent-500 tracking-wider">
         <span class="opacity-60">//</span> {{ .Section | default (i18n "archive") }}
       </p>
       {{- with .Content }}
@@ -24,9 +24,9 @@
           <article class="group">
             <a href="{{ .RelPermalink }}" class="post-card block space-y-2">
               <div class="flex items-start justify-between gap-4">
-                <h2 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-500 transition-colors">
+                <h2 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-colors">
                   {{ .Title }}
-                  <span class="arrow text-accent-500">&rarr;</span>
+                  <span class="arrow text-accent-600 dark:text-accent-500">&rarr;</span>
                 </h2>
                 <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 shrink-0 tabular-nums">
                   {{ .Date | time.Format "Jan 02, 2006" }}
