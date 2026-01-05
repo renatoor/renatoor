@@ -17,7 +17,7 @@ Renders a menu for the given menu ID.
   <nav>
     <ul class="{{ if $mobile }}flex flex-col{{ else }}flex items-center gap-6{{ end }}">
       {{- range . }}
-        {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
+        {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) (eq $page.RelPermalink .URL) }}
         <li>
           <a
             href="{{ .URL }}"
