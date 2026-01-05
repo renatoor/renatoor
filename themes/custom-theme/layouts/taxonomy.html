@@ -17,7 +17,7 @@
     {{- with .Pages }}
       <div class="flex flex-wrap gap-3">
         {{- range . }}
-          <a href="{{ .RelPermalink }}" class="tag-pill border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
+          <a href="{{ .RelPermalink }}" class="tag-pill font-mono text-xs font-medium py-1 px-3 rounded-full border transition-all border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400">
             {{ .LinkTitle }}
             <span class="ml-1 text-neutral-400 dark:text-neutral-600">({{ len .Pages }})</span>
           </a>

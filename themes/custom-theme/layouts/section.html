@@ -22,7 +22,7 @@
       <div class="space-y-2">
         {{- range . }}
           <article class="group">
-            <a href="{{ .RelPermalink }}" class="post-card block space-y-2">
+            <a href="{{ .RelPermalink }}" class="post-card relative p-6 -m-6 rounded-lg transition-colors block space-y-2">
               <div class="flex items-start justify-between gap-4">
                 <h2 class="post-title text-lg font-semibold text-neutral-900 dark:text-neutral-100 group-hover:text-accent-600 dark:group-hover:text-accent-500 transition-colors">
                   {{ .Title }}
