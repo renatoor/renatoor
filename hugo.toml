@@ -64,6 +64,12 @@ defaultContentLanguageInSubdir = false
   startLevel = 1
   endLevel = 2
 
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [['$$', '$$'], ['\[', '\]']]
+    inline = [['\(', '\)']]
+
 [module]
   [module.hugoVersion]
     extended = false
@@ -75,6 +81,15 @@ defaultContentLanguageInSubdir = false
     disableWatch = true
     source = 'hugo_stats.json'
     target = 'assets/notwatching/hugo_stats.json'
+  [[module.mounts]]
+    source = 'node_modules/katex/dist'
+    target = 'assets/katex'
+  [[module.mounts]]
+    source = 'static'
+    target = 'static'
+  [[module.mounts]]
+    source = 'node_modules/katex/dist/fonts'
+    target = 'static/katex/fonts'
 
 [caches]
   [caches.images]

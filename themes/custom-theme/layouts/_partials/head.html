@@ -11,3 +11,6 @@
   {{ partial "head/css.html" . }}
 {{ end }}
 {{ partialCached "head/js.html" . }}
+{{- if .Param "math" }}
+{{ partial "head/math.html" . }}
+{{- end }}
