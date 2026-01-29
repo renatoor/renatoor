@@ -1,6 +1,6 @@
 +++
 date = '2026-01-04T23:38:55-03:00'
-draft = false
+draft = true
 title = 'Markdown Rendering Test'
 tags = ['test', 'markdown', 'demo']
 math = true
@@ -11,19 +11,24 @@ This page demonstrates all the markdown rendering capabilities available in this
 ## Headings
 
 # Heading 1
+
 ## Heading 2
+
 ### Heading 3
+
 #### Heading 4
+
 ##### Heading 5
+
 ###### Heading 6
 
 ## Text Formatting
 
 This is **bold text** using asterisks.
-This is __bold text__ using underscores.
-This is *italic text* using asterisks.
+This is **bold text** using underscores.
+This is _italic text_ using asterisks.
 This is _italic text_ using underscores.
-This is ***bold and italic*** text.
+This is **_bold and italic_** text.
 This is ~~strikethrough~~ text.
 This is `inline code` text.
 
@@ -97,7 +102,7 @@ function greet(name) {
   return true;
 }
 
-greet('World');
+greet("World");
 ```
 
 ```python
@@ -125,12 +130,12 @@ func main() {
 <!-- HTML example -->
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Test Page</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Hello World</h1>
-</body>
+  </body>
 </html>
 ```
 
@@ -174,29 +179,29 @@ git status
 
 ### Simple Table
 
-| Name | Age | City |
-|------|-----|------|
-| Alice | 28 | New York |
-| Bob | 35 | London |
-| Charlie | 42 | Tokyo |
+| Name    | Age | City     |
+| ------- | --- | -------- |
+| Alice   | 28  | New York |
+| Bob     | 35  | London   |
+| Charlie | 42  | Tokyo    |
 
 ### Table with Alignment
 
 | Left Aligned | Center Aligned | Right Aligned |
-|:-------------|:--------------:|--------------:|
-| Left | Center | Right |
-| A | B | C |
-| 1 | 2 | 3 |
+| :----------- | :------------: | ------------: |
+| Left         |     Center     |         Right |
+| A            |       B        |             C |
+| 1            |       2        |             3 |
 
 ### Complex Table
 
-| Feature | Supported | Notes |
-|---------|-----------|-------|
-| **Headings** | ✅ Yes | All levels H1-H6 |
-| **Lists** | ✅ Yes | Ordered, unordered, nested |
-| **Code** | ✅ Yes | Inline and blocks with syntax highlighting |
-| **Tables** | ✅ Yes | With alignment support |
-| **Images** | ✅ Yes | Standard markdown syntax |
+| Feature      | Supported | Notes                                      |
+| ------------ | --------- | ------------------------------------------ |
+| **Headings** | ✅ Yes    | All levels H1-H6                           |
+| **Lists**    | ✅ Yes    | Ordered, unordered, nested                 |
+| **Code**     | ✅ Yes    | Inline and blocks with syntax highlighting |
+| **Tables**   | ✅ Yes    | With alignment support                     |
+| **Images**   | ✅ Yes    | Standard markdown syntax                   |
 
 ## Blockquotes
 
@@ -213,7 +218,9 @@ git status
 > Even **formatted text** and `code`.
 
 > Nested blockquotes:
+>
 > > This is nested
+> >
 > > > And this is deeply nested
 
 ## Horizontal Rules
@@ -224,11 +231,11 @@ Three or more hyphens:
 
 Three or more asterisks:
 
-***
+---
 
 Three or more underscores:
 
-___
+---
 
 ## Images
 
@@ -248,8 +255,8 @@ Emoji: 🚀 ✨ 💻 🎉
 
 The HTML specification is maintained by the W3C.
 
-*[HTML]: HyperText Markup Language
-*[W3C]: World Wide Web Consortium
+_[HTML]: HyperText Markup Language
+_[W3C]: World Wide Web Consortium
 
 ## Footnotes
 
@@ -268,11 +275,11 @@ Here is another with a longer footnote[^long-note].
 ## Definition Lists
 
 Term 1
-:   Definition 1
+: Definition 1
 
 Term 2
-:   Definition 2a
-:   Definition 2b
+: Definition 2a
+: Definition 2b
 
 ## HTML in Markdown
 
@@ -310,13 +317,13 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
 
 ## Combination Test
 
-Here's a **bold statement** with *italic emphasis* and `inline code`. Check out [this link](https://example.com) for more information.
+Here's a **bold statement** with _italic emphasis_ and `inline code`. Check out [this link](https://example.com) for more information.
 
-> **Note**: This is a blockquote with **bold text**, *italics*, and a [link](https://example.com).
+> **Note**: This is a blockquote with **bold text**, _italics_, and a [link](https://example.com).
 >
 > ```javascript
 > // Even code blocks
-> console.log('inside blockquotes!');
+> console.log("inside blockquotes!");
 > ```
 
 ### Final Checklist
