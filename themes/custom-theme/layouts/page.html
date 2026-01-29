@@ -1,5 +1,7 @@
 {{ define "reading-progress" }}
-  <div id="reading-progress" class="h-1 bg-accent-600 dark:bg-accent-500 origin-left" style="transform: scaleX(0)"></div>
+  {{- if eq .Section "blog" }}
+  <div id="reading-progress" class="absolute top-0 left-0 w-full h-1 bg-accent-600 dark:bg-accent-500 origin-left z-10" style="transform: scaleX(0)"></div>
+  {{- end }}
 {{ end }}
 
 {{/* Mobile ToC - Sticky full-width bar outside main container */}}
