@@ -10,6 +10,20 @@ window.toggleTheme = function() {
 window.Alpine = Alpine;
 Alpine.start();
 
+// Reading progress bar
+const progressBar = document.getElementById('reading-progress');
+if (progressBar) {
+  const article = document.querySelector('article');
+  if (article) {
+    window.addEventListener('scroll', function() {
+      const scrollY = window.scrollY;
+      const maxScroll = article.offsetTop + article.offsetHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollY / maxScroll)) : 1;
+      progressBar.style.transform = 'scaleX(' + progress + ')';
+    }, { passive: true });
+  }
+}
+
 // Table of Contents scroll spy (highlight active heading)
 document.addEventListener('DOMContentLoaded', function() {
   const tocLinks = document.querySelectorAll('.toc-list a');
