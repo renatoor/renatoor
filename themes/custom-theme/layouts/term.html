@@ -1,15 +1,16 @@
 {{ define "main" }}
+  {{- $count := len .Pages }}
   <div class="space-y-10 animate-fade-in">
     {{/* Header */}}
     <header class="space-y-3">
       <p class="text-sm font-mono text-accent-600 dark:text-accent-500 tracking-wider">
-        <span class="opacity-60">//</span> tagged
+        <span class="opacity-60">//</span> {{ i18n "tagged" }}
       </p>
       <h1 class="hero-title text-3xl sm:text-4xl text-neutral-900 dark:text-neutral-100">
         #{{ .Title }}
       </h1>
       <p class="text-neutral-600 dark:text-neutral-400 font-mono text-sm">
-        {{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}
+        {{ i18n "post_count" (dict "Count" $count) }}
       </p>
     </header>
 
@@ -25,7 +26,7 @@
                   <span class="arrow text-accent-600 dark:text-accent-500">&rarr;</span>
                 </h2>
                 <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 shrink-0 tabular-nums">
-                  {{ .Date | time.Format "Jan 02, 2006" }}
+                  {{ .Date | time.Format ":date_medium" }}
                 </time>
               </div>
               {{- with .Summary }}

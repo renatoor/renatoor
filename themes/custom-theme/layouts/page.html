@@ -63,7 +63,7 @@
       {{- if not .Date.IsZero }}
         <div class="flex items-center gap-3 text-sm font-mono text-neutral-600 dark:text-neutral-400 animate-fade-in animate-delay-2">
           <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="tabular-nums">
-            {{ .Date | time.Format "January 2, 2006" }}
+            {{ .Date | time.Format ":date_long" }}
           </time>
           {{- with .ReadingTime }}
             <span class="text-neutral-400 dark:text-neutral-600">&middot;</span>

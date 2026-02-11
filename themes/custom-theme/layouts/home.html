@@ -59,7 +59,7 @@
                   <span class="arrow text-accent-600 dark:text-accent-500">&rarr;</span>
                 </h3>
                 <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="text-sm font-mono text-neutral-600 dark:text-neutral-400 shrink-0 tabular-nums">
-                  {{ .Date | time.Format "Jan 02" }}
+                  {{ .Date | time.Format ":date_medium" }}
                 </time>
               </div>
               {{- with .Summary }}

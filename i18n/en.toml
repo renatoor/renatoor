@@ -32,6 +32,16 @@ other = "On this page"
 [no_posts]
 other = "No posts yet."
 
+[browse_by]
+other = "browse by"
+
+[tagged]
+other = "tagged"
+
+[post_count]
+one = "{{ .Count }} post"
+other = "{{ .Count }} posts"
+
 # Section
 [archive]
 other = "archive"

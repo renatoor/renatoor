@@ -16,9 +16,10 @@
       {{- end }}
     {{- end }}
     {{- if and (not $isActive) (not $targetURL) }}
-      {{- $targetURL = (printf "/%s/" .Lang) }}
-      {{- if eq .Lang "en" }}
-        {{- $targetURL = "/" }}
+      {{- range site.Sites }}
+        {{- if eq .Language.Lang $lang.Lang }}
+          {{- $targetURL = .Home.RelPermalink }}
+        {{- end }}
       {{- end }}
     {{- end }}
     {{- if gt $index 0 }}
