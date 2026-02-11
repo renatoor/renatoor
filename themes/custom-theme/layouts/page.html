@@ -1,6 +1,6 @@
 {{ define "reading-progress" }}
   {{- if eq .Section "blog" }}
-  <div id="reading-progress" class="absolute top-0 left-0 w-full h-1 bg-accent-600 dark:bg-accent-500 origin-left z-10" style="transform: scaleX(0)"></div>
+  <div id="reading-progress" class="fixed top-0 left-0 w-full h-0.5 bg-accent-600 dark:bg-accent-500 origin-left z-[70] pointer-events-none" style="transform: scaleX(0)"></div>
   {{- end }}
 {{ end }}
 
@@ -8,7 +8,7 @@
 {{ define "toc-mobile" }}
   {{- $hasToc := and (gt (len .TableOfContents) 0) (eq .Section "blog") -}}
   {{- if $hasToc }}
-  <div x-data="{ tocOpen: false }" class="lg:hidden sticky top-[77px] z-40">
+  <div x-data="{ tocOpen: false }" data-mobile-toc class="mobile-toc-bar lg:hidden sticky z-40">
     <div class="bg-neutral-50 dark:bg-neutral-950 border-b border-neutral-200/50 dark:border-neutral-800/50">
       <button
         @click="tocOpen = !tocOpen"
@@ -74,7 +74,7 @@
     </header>
 
     {{/* Article Content */}}
-    <div class="prose prose-neutral dark:prose-invert max-w-none prose-headings:scroll-mt-20 animate-fade-in animate-delay-3">
+    <div class="prose prose-neutral dark:prose-invert max-w-none animate-fade-in animate-delay-3">
       {{ .Content }}
     </div>
 

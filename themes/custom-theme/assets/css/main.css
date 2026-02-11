@@ -129,6 +129,31 @@ h1, h2, h3, h4, h5, h6,
   color: var(--color-accent-500);
 }
 
+/* Mobile blog reading chrome:
+   - navbar slides out while scrolling down
+   - navbar slides in when scrolling up
+   - mobile ToC can pin to top when navbar is hidden */
+@media (max-width: 1023px) {
+  .is-blog-page .site-header {
+    transform: translateY(calc(-1 * var(--mobile-header-hide-offset, 0px)));
+    transition: transform 0.08s linear;
+    will-change: transform;
+  }
+
+  .is-blog-page .mobile-toc-bar {
+    top: var(--mobile-header-visible-height, var(--mobile-header-height, 77px));
+    transition: top 0.08s linear;
+    will-change: top;
+  }
+}
+
+@media (max-width: 1023px) and (prefers-reduced-motion: reduce) {
+  .is-blog-page .site-header,
+  .is-blog-page .mobile-toc-bar {
+    transition: none;
+  }
+}
+
 /* ============================================
    CARDS & LINKS
    ============================================ */
@@ -350,7 +375,7 @@ h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
 @media (max-width: 1023px) {
   h1[id], h2[id], h3[id], h4[id], h5[id], h6[id],
   :target {
-    scroll-margin-top: 8rem;
+    scroll-margin-top: var(--mobile-anchor-offset, 8rem);
   }
 }
 
