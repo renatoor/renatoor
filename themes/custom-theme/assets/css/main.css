@@ -18,18 +18,25 @@
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-serif: 'Source Serif 4', Georgia, serif;
 
-  /* Accent Colors - Cyan (better dark mode contrast) */
+  /* Accent Colors - Cyan (base scale tuned for light mode contrast) */
   --color-accent-50: #ecfeff;
   --color-accent-100: #cffafe;
   --color-accent-200: #a5f3fc;
   --color-accent-300: #67e8f9;
   --color-accent-400: #22d3ee;
-  --color-accent-500: #06b6d4;
-  --color-accent-600: #0891b2;
-  --color-accent-700: #0e7490;
+  --color-accent-500: #0e7490;
+  --color-accent-600: #155e75;
+  --color-accent-700: #164e63;
 
   /* Animation timing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark mode uses brighter cyan for readability on dark surfaces */
+.dark {
+  --color-accent-500: #06b6d4;
+  --color-accent-600: #0891b2;
+  --color-accent-700: #0e7490;
 }
 
 /* Base styles */
